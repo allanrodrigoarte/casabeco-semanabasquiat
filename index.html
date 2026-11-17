@@ -73,14 +73,20 @@
     .proposal-card b { font:27px/.95 var(--display); letter-spacing:-.05em; text-transform:uppercase; max-width:240px; }
     .proposal-card p { margin:18px 0 0; line-height:1.5; font-size:14px; max-width:290px; }
     .experiences { color:var(--white); }
-    .experience-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-    .experience-card { min-width:0; background:#191919; border:1px solid var(--line); display:flex; flex-direction:column; }
-    .experience-card .image-frame { height:190px; flex:none; }
-    .experience-card img { display:block; width:100%; height:100%; object-fit:cover; filter:saturate(.78) contrast(1.05); }
-    .experience-content { padding:20px; display:flex; flex:1; flex-direction:column; }
-    .experience-content h3 { font:23px/.98 var(--display); letter-spacing:-.05em; text-transform:uppercase; margin:0 0 12px; }
-    .experience-content p { color:var(--muted); font-size:13px; line-height:1.5; margin:0 0 18px; }
-    .price-list { margin-top:auto; border-top:1px solid var(--line); padding-top:12px; display:grid; gap:9px; }
+    .experience-list { display:grid; gap:26px; }
+    .experience-showcase { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:26px; padding:22px; border:1px solid var(--line); background:#191919; }
+    .experience-media { position:relative; }
+    .carousel { position:relative; overflow:hidden; border:1px solid rgba(245,245,240,.35); background:var(--black); aspect-ratio:1/1; }
+    .carousel img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.02); transition:opacity .35s ease, transform .35s ease; }
+    .carousel img.is-active { opacity:1; transform:scale(1); }
+    .carousel-nav { position:absolute; right:14px; bottom:14px; display:flex; gap:8px; z-index:2; }
+    .carousel-btn { width:38px; height:38px; border:1px solid rgba(245,245,240,.6); background:rgba(17,17,17,.75); color:var(--white); font:22px/1 var(--body); cursor:pointer; }
+    .carousel-btn:hover, .carousel-btn:focus-visible { background:var(--yellow); color:var(--black); }
+    .experience-copy { padding:12px 8px 12px 0; display:flex; flex-direction:column; justify-content:center; }
+    .experience-copy .eyebrow { color:var(--yellow); margin-bottom:10px; }
+    .experience-copy h3 { font:clamp(30px,4vw,52px)/.9 var(--display); letter-spacing:-.06em; text-transform:uppercase; margin:0 0 14px; }
+    .experience-copy p { color:var(--muted); font-size:14px; line-height:1.55; margin:0 0 20px; max-width:440px; }
+    .experience-values { margin-top:auto; border-top:1px solid var(--line); padding-top:12px; display:grid; gap:10px; }
     .price { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font:11px var(--mono); }
     .price strong { color:var(--yellow); font:16px var(--display); white-space:nowrap; }
     .cafe { background:#191919; }
@@ -94,6 +100,8 @@
     .custom-copy .eyebrow { color:var(--yellow); margin-bottom:18px; }
     .watch { background:var(--blue); color:var(--white); }
     .watch .section-no { color:var(--yellow); }
+    .watch-cover { margin:0 0 30px; overflow:hidden; border:1px solid rgba(245,245,240,.45); background:var(--black); }
+    .watch-cover img { display:block; width:100%; height:min(42vw, 420px); object-fit:cover; filter:saturate(.82) contrast(1.08); }
     .watch-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:40px; align-items:stretch; }
     .watch-title { font:clamp(48px,7vw,88px)/.85 var(--display); letter-spacing:-.08em; text-transform:uppercase; margin:0 0 24px; }
     .watch-copy p { font-size:16px; line-height:1.55; max-width:530px; }
@@ -154,7 +162,8 @@
       .hero-copy { min-height:560px; padding:54px max(22px,calc((100vw - 700px)/2)); }
       .hero-art { min-height:500px; }
       .section-head { grid-template-columns:1fr; gap:14px; }
-      .proposal-grid, .experience-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .proposal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .experience-showcase { grid-template-columns:1fr; }
       .watch-grid { grid-template-columns:1fr; gap:28px; }
       .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:220px; }
       .approval-inner { grid-template-columns:1fr; }
@@ -174,9 +183,9 @@
       .section { padding:64px 0; }
       .section-head { margin-bottom:30px; }
       .lead { font-size:16px; }
-      .proposal-grid, .experience-grid, .custom-row, .benefit-grid, .commercial-note { grid-template-columns:1fr; }
+      .proposal-grid, .custom-row, .benefit-grid, .commercial-note { grid-template-columns:1fr; }
       .proposal-card { min-height:165px; }
-      .experience-card .image-frame { height:210px; }
+      .experience-showcase { grid-template-columns:1fr; }
       .custom-row .image-frame { min-height:230px; }
       .custom-copy { padding:28px 22px; }
       .watch-title { font-size:clamp(46px,13vw,68px); }
@@ -269,24 +278,47 @@
             <p class="lead">Atividades com participação do público e valores individuais sugeridos. Cada experiência pode funcionar como produto independente durante a semana.</p>
           </div>
         </div>
-        <div class="experience-grid">
-          <article class="experience-card">
-            <div class="image-frame" data-fallback="Graffiti · Porto"><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Jean-Michel_Basquiat_graffiti.jpg" alt="Graffiti inspirado em Basquiat no Porto, obra intitulada Dripping" loading="lazy" decoding="async"></div>
-            <div class="experience-content">
+        <div class="experience-list">
+          <article class="experience-showcase">
+            <div class="experience-media">
+              <div class="carousel" aria-label="Carrossel da experiência Graffiti à la Basquiat">
+                <img class="is-active" src="https://upload.wikimedia.org/wikipedia/commons/9/98/Jean-Michel_Basquiat_graffiti.jpg" alt="Graffiti inspirado em Basquiat no Porto" loading="lazy" decoding="async">
+                <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg/1280px-Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg" alt="Pintura de graffiti em homenagem a Basquiat em Berlim" loading="lazy" decoding="async">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Cuadro_SAMO.jpg" alt="Pintura SAMO inspirada em Basquiat" loading="lazy" decoding="async">
+              </div>
+              <div class="carousel-nav">
+                <button class="carousel-btn" type="button" aria-label="Anterior">‹</button>
+                <button class="carousel-btn" type="button" aria-label="Próximo">›</button>
+              </div>
+            </div>
+            <div class="experience-copy">
+              <span class="eyebrow">Experiência 01</span>
               <h3>Graffiti à la Basquiat</h3>
-              <p>Tags, lettering, coroas, dinossauros, símbolos e frases. Uma introdução prática à linguagem do graffiti.</p>
-              <div class="price-list">
+              <p>Tags, lettering, coroas, dinossauros, símbolos e frases. Uma introdução prática à linguagem do graffiti, com referências visuais e liberdade para criar.</p>
+              <div class="experience-values">
                 <div class="price"><span>Tag</span><strong>R$ 150</strong></div>
                 <div class="price"><span>Bomb</span><strong>R$ 250</strong></div>
               </div>
             </div>
           </article>
-          <article class="experience-card">
-            <div class="image-frame" data-fallback="Pintura · SAMO"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Cuadro_SAMO.jpg" alt="Pintura SAMO atribuída a Jean-Michel Basquiat" loading="lazy" decoding="async"></div>
-            <div class="experience-content">
+
+          <article class="experience-showcase">
+            <div class="experience-media">
+              <div class="carousel" aria-label="Carrossel da experiência Experiências artísticas">
+                <img class="is-active" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Cuadro_SAMO.jpg" alt="Pintura SAMO atribuída a Jean-Michel Basquiat" loading="lazy" decoding="async">
+                <img src="imgs/fashion/basq-shirt.webp" alt="Camiseta customizada com identidade Basquiat" loading="lazy" decoding="async">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Jean-Michel_Basquiat_graffiti.jpg" alt="Detalhe de grafite com linguagem basquiat" loading="lazy" decoding="async">
+              </div>
+              <div class="carousel-nav">
+                <button class="carousel-btn" type="button" aria-label="Anterior">‹</button>
+                <button class="carousel-btn" type="button" aria-label="Próximo">›</button>
+              </div>
+            </div>
+            <div class="experience-copy">
+              <span class="eyebrow">Experiência 02</span>
               <h3>Experiências artísticas</h3>
-              <p>Atividades acessíveis para experimentar desenho, stencil e pintura, com orientação e materiais.</p>
-              <div class="price-list">
+              <p>Atividades acessíveis para experimentar desenho, stencil e pintura, com orientação, materiais e um processo criativo pensado para público iniciante e avançado.</p>
+              <div class="experience-values">
                 <div class="price"><span>Desenhe como Basquiat</span><strong>R$ 60</strong></div>
                 <div class="price"><span>Stencil em tela ou ecobag</span><strong>R$ 150</strong></div>
                 <div class="price"><span>Pintura em tecido</span><strong>R$ 120</strong></div>
@@ -294,12 +326,24 @@
               </div>
             </div>
           </article>
-          <article class="experience-card">
-            <div class="image-frame" data-fallback="Camiseta Basquiat"><img src="imgs/fashion/basq-shirt.webp" alt="Camiseta Basquiat" loading="lazy" decoding="async"></div>
-            <div class="experience-content">
+
+          <article class="experience-showcase">
+            <div class="experience-media">
+              <div class="carousel" aria-label="Carrossel da experiência Customização de roupas">
+                <img class="is-active" src="imgs/fashion/basq-shirt.webp" alt="Camiseta Basquiat" loading="lazy" decoding="async">
+                <img src="imgs/coffee/coffee-type.png" alt="Identidade visual do café inspirada em Basquiat" loading="lazy" decoding="async">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Jean-Michel_Basquiat_graffiti.jpg" alt="Cores e elementos visuais de graffiti basquiat" loading="lazy" decoding="async">
+              </div>
+              <div class="carousel-nav">
+                <button class="carousel-btn" type="button" aria-label="Anterior">‹</button>
+                <button class="carousel-btn" type="button" aria-label="Próximo">›</button>
+              </div>
+            </div>
+            <div class="experience-copy">
+              <span class="eyebrow">Experiência 03</span>
               <h3>Customização de roupas</h3>
-              <p>DTF, stencil, Free Art, lettering e pintura manual. Uma experiência de moda e expressão pessoal.</p>
-              <div class="price-list">
+              <p>DTF, stencil, Free Art, lettering e pintura manual. Uma experiência de moda e expressão pessoal, com possibilidade de personalizar peças do participante.</p>
+              <div class="experience-values">
                 <div class="price"><span>Formato</span><strong>A definir</strong></div>
                 <div class="price"><span>Peça do participante</span><strong>Pode trazer</strong></div>
               </div>
@@ -316,7 +360,7 @@
           <div><h2>Café + bar.</h2></div>
         </div>
         <div class="custom-row">
-          <div class="image-frame" data-fallback="Basquiat · Warhol · Nova York, 1984"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Andy_Warhol%2C_Jean-Michel_Basquiat%2C_Bruno_Bischofberger_and_Fransesco_Clemente%2C_New_York%2C_1984.tif/lossy-page1-1280px-Andy_Warhol%2C_Jean-Michel_Basquiat%2C_Bruno_Bischofberger_and_Fransesco_Clemente%2C_New_York%2C_1984.tif.jpg" alt="Basquiat com Andy Warhol, Bruno Bischofberger e Fransesco Clemente em Nova York, 1984" loading="lazy" decoding="async"></div>
+          <div class="image-frame" data-fallback="Basquiat · Warhol · Nova York, 1984"><img src="imgs\coffee\coffee-type.png" alt="Basquiat coffee type" loading="lazy" decoding="async"></div>
           <div class="custom-copy">
             <span class="eyebrow">Café + bar · Edição especial</span>
             <h3>Um cardápio com identidade.</h3>
@@ -332,6 +376,9 @@
           <span class="section-no">04 / EVENTO PRINCIPAL · 11.12</span>
           <div><h2>Watch party Basquiat.</h2></div>
         </div>
+        <figure class="watch-cover">
+          <img src="imgs\self\basq-dance.webp" alt="Capa do evento Coffee Party Basquiat" loading="eager" decoding="async">
+        </figure>
         <div class="watch-grid">
           <div class="watch-copy">
             <h3 class="watch-title">Uma noite de arte, filme e conversa.</h3>
@@ -347,11 +394,11 @@
             <article class="ticket">
               <h3>Watch Party</h3>
               <p>Ingresso com consumação mínima no café.</p>
-              <strong>R$ 25</strong>
+              <strong>R$ 30</strong>
             </article>
             <article class="ticket">
               <h3>Basquiat Drinks</h3>
-              <p>Crédito de R$ 30 para drinks selecionados.</p>
+              <p>Crédito de R$ 40 para drinks selecionados.</p>
               <strong>R$ 30</strong>
             </article>
             <article class="ticket">
@@ -447,6 +494,28 @@
       };
       image.addEventListener("error", showFallback);
       if (image.complete && image.naturalWidth === 0) showFallback();
+    });
+
+    document.querySelectorAll('.carousel').forEach((carousel) => {
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      if (slides.length < 2) return;
+
+      let currentIndex = 0;
+      const update = () => {
+        slides.forEach((slide, index) => slide.classList.toggle('is-active', index === currentIndex));
+      };
+
+      const buttons = carousel.parentElement.querySelectorAll('.carousel-btn');
+      buttons[0].addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        update();
+      });
+      buttons[1].addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        update();
+      });
+
+      update();
     });
   </script>
 </body>
