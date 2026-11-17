@@ -108,9 +108,8 @@
     .ticket strong { grid-column:2; grid-row:1 / span 2; color:var(--yellow); font:clamp(23px,3vw,30px) var(--display); white-space:nowrap; }
     .legal { margin-top:22px; max-width:650px; font:10px/1.6 var(--mono); }
     .ambient { background:var(--black); }
-    .space-grid { display:grid; grid-template-columns:1.2fr .8fr .8fr; grid-template-rows:190px 190px; gap:10px; }
+    .space-grid { display:grid; grid-template-columns:1.2fr .8fr; grid-template-rows:320px; gap:10px; }
     .space-grid figure { min-width:0; margin:0; }
-    .space-grid figure:first-child { grid-row:span 2; }
     .space-grid .image-frame { height:100%; min-height:160px; }
     .space-grid img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .5s; }
     .space-grid figure:hover img { transform:scale(1.04); }
@@ -138,6 +137,12 @@
     .button.secondary:hover { color:var(--black); }
     footer { padding:20px 0; background:var(--black); color:var(--muted); border-top:1px solid var(--line); }
     .footer-inner { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; font:10px var(--mono); text-transform:uppercase; }
+    .image-credits { margin-top:24px; padding-top:18px; border-top:1px solid var(--line); }
+    .image-credits h2 { margin:0 0 12px; color:var(--yellow); font:11px var(--mono); letter-spacing:.08em; }
+    .image-credits ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 24px; list-style:none; margin:0; padding:0; }
+    .image-credits li { color:var(--muted); font:10px/1.5 var(--mono); }
+    .image-credits a { color:var(--white); }
+    .image-credits a:hover, .image-credits a:focus-visible { color:var(--yellow); }
     @media (max-width:1000px) {
       .hero { grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); }
       .hero-copy { padding-right:28px; }
@@ -151,8 +156,7 @@
       .section-head { grid-template-columns:1fr; gap:14px; }
       .proposal-grid, .experience-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .watch-grid { grid-template-columns:1fr; gap:28px; }
-      .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:220px 180px; }
-      .space-grid figure:first-child { grid-row:span 2; }
+      .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:220px; }
       .approval-inner { grid-template-columns:1fr; }
       .approval-mark { width:90px; height:90px; }
     }
@@ -179,11 +183,11 @@
       .ticket { padding:16px; gap:8px 12px; }
       .ticket h3 { font-size:18px; }
       .ticket strong { font-size:22px; }
-      .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:180px 150px; }
-      .space-grid figure:first-child { grid-row:span 2; }
+      .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:180px; }
       .space-note { flex-direction:column; gap:7px; }
       .approval { padding:64px 0; }
       .footer-inner { flex-direction:column; }
+      .image-credits ul { grid-template-columns:1fr; }
     }
     @media (max-width:360px) {
       .wrap { width:calc(100% - 24px); }
@@ -191,8 +195,7 @@
       h1 { font-size:56px; }
       .hero-meta { gap:14px; }
       .meta-block { min-width:94px; }
-      .space-grid { grid-template-columns:1fr; grid-template-rows:repeat(3,180px); }
-      .space-grid figure:first-child { grid-row:auto; }
+      .space-grid { grid-template-columns:1fr; grid-template-rows:repeat(2,180px); }
       .ticket { grid-template-columns:minmax(0,1fr) auto; }
     }
     @media (prefers-reduced-motion:reduce) {
@@ -232,8 +235,8 @@
         </div>
         <div class="eyebrow">Proposta para avaliação e aprovação da gestão <span class="asterisk">*</span></div>
       </div>
-      <div class="hero-art image-frame" data-fallback="Arte em processo · CasaBeco">
-        <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=1400&q=85" alt="Pintura contemporânea em uma galeria de arte" fetchpriority="high" decoding="async">
+      <div class="hero-art image-frame" data-fallback="Graffiti Basquiat · Berlim">
+        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg/1280px-Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg" alt="Graffiti em homenagem a Jean-Michel Basquiat no Mauerpark, Berlim" fetchpriority="high" decoding="async">
         <div class="scribble">ART!</div>
         <span class="crown-mark" aria-hidden="true">♛</span>
         <div class="hero-note"><strong>Make art.<br>Make noise.</strong><span>Uma celebração da expressão urbana</span></div>
@@ -268,7 +271,7 @@
         </div>
         <div class="experience-grid">
           <article class="experience-card">
-            <div class="image-frame" data-fallback="Arte urbana em processo"><img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=80" alt="Instalação visual em espaço cultural" loading="lazy" decoding="async"></div>
+            <div class="image-frame" data-fallback="Graffiti · Porto"><img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Jean-Michel_Basquiat_graffiti.jpg" alt="Graffiti inspirado em Basquiat no Porto, obra intitulada Dripping" loading="lazy" decoding="async"></div>
             <div class="experience-content">
               <h3>Graffiti à la Basquiat</h3>
               <p>Tags, lettering, coroas, dinossauros, símbolos e frases. Uma introdução prática à linguagem do graffiti.</p>
@@ -279,7 +282,7 @@
             </div>
           </article>
           <article class="experience-card">
-            <div class="image-frame" data-fallback="Ateliê aberto"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80" alt="Materiais e telas para pintura" loading="lazy" decoding="async"></div>
+            <div class="image-frame" data-fallback="Pintura · SAMO"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Cuadro_SAMO.jpg" alt="Pintura SAMO atribuída a Jean-Michel Basquiat" loading="lazy" decoding="async"></div>
             <div class="experience-content">
               <h3>Experiências artísticas</h3>
               <p>Atividades acessíveis para experimentar desenho, stencil e pintura, com orientação e materiais.</p>
@@ -292,7 +295,7 @@
             </div>
           </article>
           <article class="experience-card">
-            <div class="image-frame" data-fallback="Moda urbana"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" alt="Moda urbana e customização de roupas" loading="lazy" decoding="async"></div>
+            <div class="image-frame" data-fallback="Camiseta Basquiat"><img src="imgs/fashion/basq-shirt.webp" alt="Camiseta Basquiat" loading="lazy" decoding="async"></div>
             <div class="experience-content">
               <h3>Customização de roupas</h3>
               <p>DTF, stencil, Free Art, lettering e pintura manual. Uma experiência de moda e expressão pessoal.</p>
@@ -313,7 +316,7 @@
           <div><h2>Café + bar.</h2></div>
         </div>
         <div class="custom-row">
-          <div class="image-frame" data-fallback="Ateliê · criação · encontro"><img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=1100&q=85" alt="Ateliê com obras de arte e materiais criativos" loading="lazy" decoding="async"></div>
+          <div class="image-frame" data-fallback="Basquiat · Warhol · Nova York, 1984"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Andy_Warhol%2C_Jean-Michel_Basquiat%2C_Bruno_Bischofberger_and_Fransesco_Clemente%2C_New_York%2C_1984.tif/lossy-page1-1280px-Andy_Warhol%2C_Jean-Michel_Basquiat%2C_Bruno_Bischofberger_and_Fransesco_Clemente%2C_New_York%2C_1984.tif.jpg" alt="Basquiat com Andy Warhol, Bruno Bischofberger e Fransesco Clemente em Nova York, 1984" loading="lazy" decoding="async"></div>
           <div class="custom-copy">
             <span class="eyebrow">Café + bar · Edição especial</span>
             <h3>Um cardápio com identidade.</h3>
@@ -372,9 +375,8 @@
           </div>
         </div>
         <div class="space-grid">
-          <figure><div class="image-frame" data-fallback="Arte contemporânea"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1100&q=85" alt="Obras e pinturas em espaço expositivo" loading="lazy" decoding="async"><figcaption>Referências visuais e exposição</figcaption></div></figure>
-          <figure><div class="image-frame" data-fallback="Cor e gesto"><img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=800&q=85" alt="Pintura abstrata colorida" loading="lazy" decoding="async"><figcaption>Paleta vibrante</figcaption></div></figure>
-          <figure><div class="image-frame" data-fallback="Ateliê aberto"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=85" alt="Ateliê e materiais de arte" loading="lazy" decoding="async"><figcaption>Ateliê aberto</figcaption></div></figure>
+          <figure><div class="image-frame" data-fallback="Retrato · arquivo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Jean-Michel_Basquiat_passport_%28cropped%29.jpg" alt="Retrato de Jean-Michel Basquiat em sua fotografia de passaporte" loading="lazy" decoding="async"><figcaption>Retrato de arquivo</figcaption></div></figure>
+          <figure><div class="image-frame" data-fallback="Untitled · 1983"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Untitled_Jean-Michel_Basquiat_.webp" alt="Obra Untitled, de Jean-Michel Basquiat, 1983" loading="lazy" decoding="async"><figcaption>Untitled · 1983</figcaption></div></figure>
         </div>
         <div class="space-note"><span>Exposição de referências · Playlist temática · Pintura ao vivo</span><span>Criação coletiva · Conteúdo audiovisual</span></div>
       </div>
@@ -424,6 +426,18 @@
     <div class="wrap footer-inner">
       <span>CasaBeco · Beco do Batman · Vila Madalena, São Paulo</span>
       <span>Semana Basquiat · Proposta conceitual · 2026</span>
+    </div>
+    <div class="wrap image-credits">
+      <h2>Créditos e licenças das imagens</h2>
+      <ul>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg" target="_blank" rel="noopener noreferrer">Graffiti de Berlim</a> · Singlespeedfahrer · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Jean-Michel_Basquiat_graffiti.jpg" target="_blank" rel="noopener noreferrer">Graffiti “Dripping”</a> · jpvargas · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Cuadro_SAMO.jpg" target="_blank" rel="noopener noreferrer">Pintura SAMO</a> · Hercolubus1975 · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Basquiat1984.tif" target="_blank" rel="noopener noreferrer">Basquiat, Nova York, 1984</a> · Galerie Bruno Bischofberger · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Andy_Warhol,_Jean-Michel_Basquiat,_Bruno_Bischofberger_and_Fransesco_Clemente,_New_York,_1984.tif" target="_blank" rel="noopener noreferrer">Basquiat e outros artistas, 1984</a> · Galerie Bruno Bischofberger · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Jean-Michel_Basquiat_passport_(cropped).jpg" target="_blank" rel="noopener noreferrer">Fotografia de passaporte</a> · autor desconhecido · domínio público</li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Untitled_Jean-Michel_Basquiat_.webp" target="_blank" rel="noopener noreferrer">Untitled, 1983</a> · Zmarkase · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li>
+      </ul>
     </div>
   </footer>
   <script>
