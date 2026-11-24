@@ -22,20 +22,28 @@
       --mono: "DM Mono", monospace;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
     body { margin: 0; background: var(--black); color: var(--white); font-family: var(--body); }
     a { color: inherit; }
     .wrap { width: min(1180px, calc(100% - 44px)); margin: 0 auto; }
     .eyebrow { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .12em; }
-    .topbar { position:relative; z-index:5; border-bottom:1px solid var(--line); padding:14px 0; background:var(--black); }
+    .topbar { position:sticky; top:0; z-index:20; border-bottom:1px solid var(--line); padding:14px 0; background:rgba(17,17,17,.94); backdrop-filter:blur(14px); }
     .topbar-inner { display:flex; justify-content:space-between; align-items:center; gap:20px; }
-    .brand { flex:none; font:22px var(--display); letter-spacing:-.07em; text-decoration:none; }
-    .brand span { color:var(--yellow); }
-    nav { display:flex; gap:18px; flex-wrap:wrap; }
-    nav a { text-decoration:none; font:10px var(--mono); text-transform:uppercase; transition:color .2s; }
-    nav a:hover, nav a:focus-visible { color:var(--yellow); }
+    .brand { display:inline-flex; flex:none; align-items:center; }
+    .brand img { display:block; width:130px; height:auto; }
+    .nav-links { display:flex; align-items:center; gap:clamp(12px,1.7vw,22px); flex-wrap:wrap; }
+    .nav-links a { position:relative; color:var(--muted); text-decoration:none; font:10px var(--mono); text-transform:uppercase; transition:color .2s; }
+    .nav-links a:hover, .nav-links a:focus-visible, .nav-links a[aria-current="location"] { color:var(--yellow); }
+    .nav-links a[aria-current="location"]::after { content:""; position:absolute; left:0; right:0; bottom:-9px; height:2px; background:var(--yellow); }
+    .nav-actions { display:flex; align-items:center; gap:14px; }
+    .language-switch { display:inline-flex; align-items:center; gap:7px; color:var(--muted); font:10px var(--mono); white-space:nowrap; }
+    .language-switch a { text-decoration:none; transition:color .2s; }
+    .language-switch a:hover, .language-switch a[aria-current="page"] { color:var(--yellow); }
+    .language-switch a[aria-current="page"] { font-weight:700; }
+    .language-switch a:focus-visible { outline:2px solid var(--yellow); outline-offset:3px; }
+    .nav-actions > .eyebrow { white-space:nowrap; }
     a:focus-visible { outline:2px solid var(--yellow); outline-offset:4px; }
-    section[id] { scroll-margin-top:24px; }
+    section[id] { scroll-margin-top:88px; }
     .hero { min-height:680px; display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); border-bottom:1px solid var(--line); }
     .hero-copy { padding:76px max(28px,calc((100vw - 1180px)/2)) 62px max(22px,calc((100vw - 1180px)/2)); display:flex; flex-direction:column; justify-content:space-between; gap:34px; }
     .hero-kicker { display:flex; align-items:center; gap:12px; }
@@ -48,7 +56,7 @@
     .meta-block strong { display:block; color:var(--yellow); font:22px var(--display); }
     .meta-block span { color:var(--muted); font:10px var(--mono); text-transform:uppercase; }
     .asterisk { color:var(--yellow); }
-    .image-frame { position:relative; overflow:hidden; background:var(--blue); isolation:isolate; }
+    .image-frame { position:relative; overflow:hidden; background:var(none); isolation:isolate; }
     .image-frame::before { content:attr(data-fallback); position:absolute; z-index:0; inset:0; display:grid; place-items:center; padding:24px; color:var(--white); font:clamp(16px,2vw,24px) var(--mono); text-align:center; text-transform:uppercase; letter-spacing:.08em; }
     .image-frame img { position:relative; z-index:1; }
     .image-frame.is-fallback img { visibility:hidden; }
@@ -155,7 +163,8 @@
       .hero { grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); }
       .hero-copy { padding-right:28px; }
       .topbar-inner { flex-wrap:wrap; }
-      nav { order:3; width:100%; }
+      .nav-links { order:3; width:100%; }
+      .nav-actions { margin-left:auto; }
     }
     @media (max-width:850px) {
       .hero { grid-template-columns:1fr; }
@@ -171,9 +180,10 @@
     }
     @media (max-width:560px) {
       .wrap { width:calc(100% - 32px); }
-      nav { gap:10px 16px; }
-      nav a { font-size:9px; }
-      .topbar-inner { align-items:flex-start; flex-direction:column; }
+      .nav-links { gap:10px 16px; }
+      .nav-links a { font-size:9px; }
+      .topbar-inner { align-items:flex-start; }
+      .nav-actions { margin-left:0; }
       h1 { font-size:clamp(58px,17vw,88px); }
       .hero-copy { min-height:510px; padding:42px 22px; }
       .hero-art { min-height:390px; }
@@ -216,8 +226,8 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a class="brand" href="#top" aria-label="CasaBeco">CASA<span>BECO</span></a>
-      <nav aria-label="Navegação principal">
+      <a class="brand" href="#top" aria-label="CasaBeco, início"><img src="imgs/logo/casabeco-logo-transp.png" alt="CasaBeco"></a>
+      <nav class="nav-links" aria-label="Navegação principal">
         <a href="#conceito">A proposta</a>
         <a href="#experiencias">Experiências</a>
         <a href="#cafe-bar">Café e bar</a>
@@ -225,7 +235,14 @@
         <a href="#ambientacao">Ambientação</a>
         <a href="#retorno">Retorno</a>
       </nav>
-      <span class="eyebrow">Proposta especial · 2026</span>
+      <div class="nav-actions">
+        <div class="language-switch" role="group" aria-label="Seletor de idioma">
+          <a href="index.html" lang="pt-BR" hreflang="pt-BR" aria-current="page">PT</a>
+          <span aria-hidden="true">/</span>
+          <a href="index-eng.html" lang="en" hreflang="en">EN</a>
+        </div>
+        <span class="eyebrow">Proposta especial · 2026</span>
+      </div>
     </div>
   </header>
 
@@ -244,10 +261,10 @@
         </div>
         <div class="eyebrow">Proposta para avaliação e aprovação da gestão <span class="asterisk">*</span></div>
       </div>
-      <div class="hero-art image-frame" data-fallback="Graffiti Basquiat · Berlim">
-        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg/1280px-Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg" alt="Graffiti em homenagem a Jean-Michel Basquiat no Mauerpark, Berlim" fetchpriority="high" decoding="async">
-        <div class="scribble">ART!</div>
-        <span class="crown-mark" aria-hidden="true">♛</span>
+      <div class="hero-art image-frame" data-fallback=" ">
+        <img src="imgs\allan\basquiat-allan.png" alt="Graffiti em homenagem a Jean-Michel Basquiat no Mauerpark, Berlim" fetchpriority="high" decoding="async">
+        <!-- <div class="scribble">A R T !</div> -->
+        <!--<span class="crown-mark" aria-hidden="true">♛</span> -->
         <div class="hero-note"><strong>Make art.<br>Make noise.</strong><span>Uma celebração da expressão urbana</span></div>
       </div>
     </section>
@@ -509,6 +526,27 @@
     </div>
   </footer>
   <script>
+    const navigationLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    const navigationTargets = navigationLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+
+    if ("IntersectionObserver" in window && navigationTargets.length) {
+      const navigationObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navigationLinks.forEach((link) => {
+            if (link.getAttribute("href") === `#${entry.target.id}`) {
+              link.setAttribute("aria-current", "location");
+            } else {
+              link.removeAttribute("aria-current");
+            }
+          });
+        });
+      }, { rootMargin: "-25% 0px -65% 0px", threshold: 0 });
+      navigationTargets.forEach((target) => navigationObserver.observe(target));
+    }
+
     document.querySelectorAll(".image-frame img").forEach((image) => {
       const showFallback = () => {
         image.closest(".image-frame").classList.add("is-fallback");
