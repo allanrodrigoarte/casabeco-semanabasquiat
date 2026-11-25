@@ -45,16 +45,16 @@
     a:focus-visible { outline:2px solid var(--yellow); outline-offset:4px; }
     section[id] { scroll-margin-top:88px; }
     .hero { min-height:680px; display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr); border-bottom:1px solid var(--line); }
-    .hero-copy { padding:76px max(28px,calc((100vw - 1180px)/2)) 62px max(22px,calc((100vw - 1180px)/2)); display:flex; flex-direction:column; justify-content:space-between; gap:34px; }
-    .hero-kicker { display:flex; align-items:center; gap:12px; }
-    .stamp { width:42px; height:42px; border:2px solid var(--yellow); color:var(--yellow); display:grid; place-items:center; font:18px var(--display); transform:rotate(-8deg); }
+    .hero-copy { min-width:0; padding:76px max(28px,calc((100vw - 1180px)/2)) 62px max(22px,calc((100vw - 1180px)/2)); display:flex; flex-direction:column; justify-content:space-between; gap:34px; }
+    .hero-kicker { display:flex; align-items:center; gap:12px; min-width:0; flex-wrap:wrap; }
+    .hero-kicker .eyebrow { min-width:0; }
     h1 { font:clamp(62px,8.5vw,122px)/.82 var(--display); letter-spacing:-.09em; text-transform:uppercase; margin:52px 0 26px; }
     h1 .yellow { color:var(--yellow); display:block; }
-    .hero-sub { max-width:450px; color:var(--white); font-size:18px; line-height:1.45; font-weight:600; }
-    .hero-meta { display:flex; gap:24px; flex-wrap:wrap; margin-top:38px; }
-    .meta-block { border-top:2px solid var(--yellow); padding-top:9px; min-width:118px; }
+    .hero-sub { max-width:450px; margin:0; color:var(--white); font-size:18px; line-height:1.45; font-weight:600; }
+    .hero-meta { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 16px; margin-top:38px; }
+    .meta-block { min-width:0; border-top:2px solid var(--yellow); padding-top:9px; }
     .meta-block strong { display:block; color:var(--yellow); font:22px var(--display); }
-    .meta-block span { color:var(--muted); font:10px var(--mono); text-transform:uppercase; }
+    .meta-block span { display:block; color:var(--muted); font:10px/1.4 var(--mono); text-transform:uppercase; overflow-wrap:anywhere; }
     .asterisk { color:var(--yellow); }
     .image-frame { position:relative; overflow:hidden; background:var(--blue); isolation:isolate; }
     .image-frame::before { content:attr(data-fallback); position:absolute; z-index:0; inset:0; display:grid; place-items:center; padding:24px; color:var(--white); font:clamp(16px,2vw,24px) var(--mono); text-align:center; text-transform:uppercase; letter-spacing:.08em; }
@@ -81,16 +81,16 @@
     .program-card b { font:27px/.95 var(--display); letter-spacing:-.05em; text-transform:uppercase; max-width:240px; }
     .program-card p { margin:18px 0 0; line-height:1.5; font-size:14px; max-width:290px; }
     .experiences { color:var(--white); }
-    .experience-list { display:grid; gap:26px; }
-    .experience-showcase { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:26px; padding:22px; border:1px solid var(--line); background:#191919; }
-    .experience-media { position:relative; }
+    .experience-list { display:grid; gap:26px; min-width:0; }
+    .experience-showcase { min-width:0; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:26px; padding:22px; border:1px solid var(--line); background:#191919; }
+    .experience-media { position:relative; min-width:0; }
     .carousel { position:relative; overflow:hidden; border:1px solid rgba(245,245,240,.35); background:var(--black); aspect-ratio:1/1; }
     .carousel img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transform:scale(1.02); transition:opacity .35s ease, transform .35s ease; }
     .carousel img.is-active { opacity:1; transform:scale(1); }
     .carousel-nav { position:absolute; right:14px; bottom:14px; display:flex; gap:8px; z-index:2; }
     .carousel-btn { width:38px; height:38px; border:1px solid rgba(245,245,240,.6); background:rgba(17,17,17,.75); color:var(--white); font:22px/1 var(--body); cursor:pointer; }
     .carousel-btn:hover, .carousel-btn:focus-visible { background:var(--yellow); color:var(--black); }
-    .experience-copy { padding:12px 8px 12px 0; display:flex; flex-direction:column; justify-content:center; }
+    .experience-copy { min-width:0; padding:12px 8px 12px 0; display:flex; flex-direction:column; justify-content:center; }
     .experience-copy .eyebrow { color:var(--yellow); margin-bottom:10px; }
     .experience-copy h3 { font:clamp(30px,4vw,52px)/.9 var(--display); letter-spacing:-.06em; text-transform:uppercase; margin:0 0 14px; }
     .experience-copy p { color:var(--muted); font-size:14px; line-height:1.55; margin:0 0 20px; max-width:440px; }
@@ -98,6 +98,11 @@
     .price { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font:11px var(--mono); }
     .price strong { color:var(--yellow); font:16px var(--display); white-space:nowrap; }
     .price strong small { font:11px var(--mono); }
+    .course-table { grid-template-columns:minmax(0,1fr) 4.5rem max-content; column-gap:10px; }
+    .course-table .course-price { display:contents; }
+    .course-table .course-name { grid-column:1; font-size:calc(11px + 2pt); }
+    .course-table .course-duration { grid-column:2; color:var(--muted); font:11px var(--mono); text-align:center; white-space:nowrap; }
+    .course-table .course-price strong { grid-column:3; justify-self:end; }
     .cafe { background:#191919; }
     .cafe .section-head { margin-bottom:32px; }
     .custom-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); border:1px solid var(--line); }
@@ -141,12 +146,12 @@
       .nav-actions { margin-left:auto; }
     }
     @media (max-width:850px) {
-      .hero { grid-template-columns:1fr; }
-      .hero-copy { min-height:560px; padding:54px max(22px,calc((100vw - 700px)/2)); }
+      .hero { grid-template-columns:minmax(0,1fr); }
+      .hero-copy { min-width:0; min-height:560px; padding:54px max(22px,calc((100vw - 700px)/2)); }
       .hero-art { min-height:500px; }
       .section-head { grid-template-columns:1fr; gap:14px; }
       .program-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-      .experience-showcase { grid-template-columns:1fr; }
+      .experience-showcase { grid-template-columns:minmax(0,1fr); }
       .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:220px; }
       .event-cta-inner { grid-template-columns:1fr; }
       .event-cta-mark { width:90px; height:90px; }
@@ -157,18 +162,23 @@
       .nav-links a { font-size:9px; }
       .topbar-inner { align-items:flex-start; }
       .nav-actions { margin-left:0; }
-      h1 { font-size:clamp(58px,17vw,88px); }
-      .hero-copy { min-height:510px; padding:42px 22px; }
+      h1 { font-size:clamp(46px,16vw,80px); }
+      .hero-copy { min-height:510px; padding:42px clamp(16px,5.9vw,22px); }
       .hero-art { min-height:390px; }
       .hero-sub { font-size:16px; }
-      .hero-meta { gap:18px; }
-      .meta-block { min-width:105px; }
+      .hero-meta { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 14px; margin-top:28px; }
       .section { padding:64px 0; }
       .section-head { margin-bottom:30px; }
       .lead { font-size:16px; }
       .program-grid, .custom-row { grid-template-columns:1fr; }
       .program-card { min-height:165px; }
-      .experience-showcase { grid-template-columns:1fr; }
+      .experience-showcase { grid-template-columns:minmax(0,1fr); }
+      .experience-values:not(.course-table) .price { min-width:0; }
+      .experience-values:not(.course-table) .price strong { white-space:normal; }
+      .course-table { grid-template-columns:minmax(0,1fr) max-content; gap:4px 12px; }
+      .course-table .course-name { grid-column:1 / -1; }
+      .course-table .course-duration { grid-column:1; text-align:left; }
+      .course-table .course-price strong { grid-column:2; }
       .custom-row .image-frame { min-height:230px; }
       .custom-copy { padding:28px 22px; }
       .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:180px; }
@@ -180,9 +190,8 @@
     @media (max-width:360px) {
       .wrap { width:calc(100% - 24px); }
       .hero-copy { padding-right:16px; padding-left:16px; }
-      h1 { font-size:56px; }
-      .hero-meta { gap:14px; }
-      .meta-block { min-width:94px; }
+      h1 { font-size:clamp(44px,16vw,58px); }
+      .hero-meta { gap:14px 12px; }
       .space-grid { grid-template-columns:1fr; grid-template-rows:repeat(2,180px); }
     }
     @media (prefers-reduced-motion:reduce) {
@@ -216,7 +225,7 @@
     <section class="hero">
       <div class="hero-copy">
         <div>
-          <div class="hero-kicker"><span class="stamp">CB</span><span class="eyebrow">CasaBeco apresenta · Beco do Batman</span></div>
+          <div class="hero-kicker"><span class="eyebrow">CasaBeco apresenta · Beco do Batman</span></div>
           <h1>Semana <span class="yellow">Basquiat</span></h1>
           <p class="hero-sub">Arte, graffiti e cultura urbana. Uma semana especial de experiências criativas, música e gastronomia na CasaBeco, no coração do Beco do Batman.</p>
           <div class="hero-meta">
@@ -262,7 +271,7 @@
         <div class="experience-list">
           <article class="experience-showcase">
             <div class="experience-media">
-              <div class="carousel" aria-label="Carrossel da experiência Graffiti à la Basquiat">
+              <div class="carousel" aria-label="Carrossel dos cursos de arte urbana">
                 <img class="is-active" src="https://upload.wikimedia.org/wikipedia/commons/9/98/Jean-Michel_Basquiat_graffiti.jpg" alt="Graffiti inspirado em Basquiat no Porto" loading="lazy" decoding="async">
                 <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg/1280px-Graffiti_Jean-Michel_Basquiat_Eme_Freethinker_Pen_Chill_Mauerpark_Berlin-Prenzlauer_Berg.jpg" alt="Pintura de graffiti em homenagem a Basquiat em Berlim" loading="lazy" decoding="async">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Cuadro_SAMO.jpg" alt="Pintura SAMO inspirada em Basquiat" loading="lazy" decoding="async">
@@ -273,13 +282,18 @@
               </div>
             </div>
             <div class="experience-copy">
-              <span class="eyebrow">Experiência 01</span>
-              <h3>Graffiti à la Basquiat</h3>
-              <p>Uma oficina prática inspirada na linguagem urbana de Basquiat: tags, lettering, coroas, dinossauros, palavras cruzadas e símbolos reconhecíveis. Cada participante aprende a combinar referências, composição e repetição para construir uma identidade visual própria.</p>
-              <p>A oficina é conduzida por um artista e pode acontecer em muro, tela ou painel. Os materiais e o espaço são preparados para uma experiência segura, criativa e cheia de possibilidades.</p>
-              <div class="experience-values">
-                <div class="price"><span>Tag</span><strong>R$ 150</strong></div>
-                <div class="price"><span>Bomb</span><strong>R$ 250</strong></div>
+              <span class="eyebrow">Cursos e oficinas</span>
+              <h3>Cursos de arte urbana</h3>
+              <p>Escolha uma atividade e experimente técnicas de desenho e graffiti com orientação artística e materiais preparados para a criação.</p>
+              <p>Os cursos duram de 20 minutos a 1 hora. Confira as opções, a duração e o valor de cada experiência:</p>
+              <div class="experience-values course-table">
+                <div class="price course-price"><span class="course-name">Atividade</span><span class="course-duration">Tempo</span><strong>Valor</strong></div>
+                <div class="price course-price"><span class="course-name">Iniciação ao Spray</span><span class="course-duration">20"</span><strong>R$ 150</strong></div>
+                <div class="price course-price"><span class="course-name">Stencil na parede</span><span class="course-duration">20"</span><strong>R$ 150</strong></div>
+                <div class="price course-price"><span class="course-name">Escreva na parede</span><span class="course-duration">20"</span><strong>R$ 150</strong></div>
+                <div class="price course-price"><span class="course-name">Desenho livre</span><span class="course-duration">30"</span><strong>R$ 200</strong></div>
+                <div class="price course-price"><span class="course-name">Crie sua tag</span><span class="course-duration">30"</span><strong>R$ 250</strong></div>
+                <div class="price course-price"><span class="course-name">Curso Bomb</span><span class="course-duration">1 h</span><strong>R$ 400</strong></div>
               </div>
             </div>
           </article>
