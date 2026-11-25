@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111111">
-  <meta name="description" content="Proposta de evento para a CasaBeco: Semana Basquiat, arte, graffiti e cultura urbana no Beco do Batman.">
+  <meta name="description" content="Semana Basquiat na CasaBeco: uma semana especial de arte, graffiti, moda, música e experiências criativas no Beco do Batman, em São Paulo.">
   <title>Semana Basquiat | CasaBeco</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,30 +56,28 @@
     .meta-block strong { display:block; color:var(--yellow); font:22px var(--display); }
     .meta-block span { color:var(--muted); font:10px var(--mono); text-transform:uppercase; }
     .asterisk { color:var(--yellow); }
-    .image-frame { position:relative; overflow:hidden; background:var(none); isolation:isolate; }
+    .image-frame { position:relative; overflow:hidden; background:var(--blue); isolation:isolate; }
     .image-frame::before { content:attr(data-fallback); position:absolute; z-index:0; inset:0; display:grid; place-items:center; padding:24px; color:var(--white); font:clamp(16px,2vw,24px) var(--mono); text-align:center; text-transform:uppercase; letter-spacing:.08em; }
     .image-frame img { position:relative; z-index:1; }
     .image-frame.is-fallback img { visibility:hidden; }
-    .hero-art { min-height:610px; }
+    .hero-art { min-height:610px; background:var(--black); }
     .hero-art img { position:absolute; z-index:1; inset:0; width:100%; height:100%; object-fit:cover; opacity:.83; filter:saturate(.7) contrast(1.12); }
     .hero-art:after { content:""; position:absolute; z-index:2; inset:0; background:linear-gradient(145deg,rgba(17,17,17,.03),rgba(17,17,17,.65)); pointer-events:none; }
     .hero-note { position:absolute; z-index:3; left:7%; bottom:8%; color:var(--white); max-width:360px; }
     .hero-note strong { display:block; font:clamp(34px,5vw,64px)/.9 var(--display); text-transform:uppercase; letter-spacing:-.06em; }
     .hero-note span { display:block; font:10px var(--mono); margin-top:15px; text-transform:uppercase; }
-    .scribble { position:absolute; z-index:3; top:9%; right:8%; color:var(--yellow); font:clamp(40px,7vw,88px) var(--display); transform:rotate(10deg); text-shadow:3px 3px var(--black); }
-    .crown-mark { position:absolute; z-index:3; top:23%; right:11%; color:var(--yellow); font-size:clamp(34px,5vw,58px); transform:rotate(12deg); }
     .section { padding:88px 0; border-bottom:1px solid var(--line); background:var(--black); }
     .section-head { display:grid; grid-template-columns:minmax(150px,.62fr) minmax(0,1.38fr); gap:30px; margin-bottom:40px; align-items:start; }
     .section-no { color:var(--yellow); font:12px var(--mono); }
     h2 { font:clamp(38px,6vw,74px)/.92 var(--display); letter-spacing:-.075em; text-transform:uppercase; margin:0; }
     .lead { max-width:690px; color:var(--muted); font-size:18px; line-height:1.55; margin:18px 0 0; }
-    .proposal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-    .proposal-card { padding:24px; min-height:205px; border:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; background:#191919; }
-    .proposal-card:nth-child(1) { background:var(--yellow); color:var(--black); }
-    .proposal-card:nth-child(2) { background:var(--blue); color:var(--white); }
-    .proposal-card:nth-child(3) { border-top:3px solid var(--yellow); }
-    .proposal-card b { font:27px/.95 var(--display); letter-spacing:-.05em; text-transform:uppercase; max-width:240px; }
-    .proposal-card p { margin:18px 0 0; line-height:1.5; font-size:14px; max-width:290px; }
+    .program-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .program-card { padding:24px; min-height:205px; border:1px solid var(--line); display:flex; flex-direction:column; justify-content:space-between; background:#191919; }
+    .program-card:nth-child(1) { background:var(--yellow); color:var(--black); }
+    .program-card:nth-child(2) { background:var(--blue); color:var(--white); }
+    .program-card:nth-child(3) { border-top:3px solid var(--yellow); }
+    .program-card b { font:27px/.95 var(--display); letter-spacing:-.05em; text-transform:uppercase; max-width:240px; }
+    .program-card p { margin:18px 0 0; line-height:1.5; font-size:14px; max-width:290px; }
     .experiences { color:var(--white); }
     .experience-list { display:grid; gap:26px; }
     .experience-showcase { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:26px; padding:22px; border:1px solid var(--line); background:#191919; }
@@ -97,6 +95,7 @@
     .experience-values { margin-top:auto; border-top:1px solid var(--line); padding-top:12px; display:grid; gap:10px; }
     .price { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font:11px var(--mono); }
     .price strong { color:var(--yellow); font:16px var(--display); white-space:nowrap; }
+    .price strong small { font:11px var(--mono); }
     .cafe { background:#191919; }
     .cafe .section-head { margin-bottom:32px; }
     .custom-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); border:1px solid var(--line); }
@@ -106,23 +105,6 @@
     .custom-copy h3 { font:clamp(30px,4vw,48px)/.92 var(--display); letter-spacing:-.06em; text-transform:uppercase; margin:0 0 16px; }
     .custom-copy p { max-width:440px; line-height:1.55; margin:0; }
     .custom-copy .eyebrow { color:var(--yellow); margin-bottom:18px; }
-    .watch { background:var(--blue); color:var(--white); }
-    .watch .section-no { color:var(--yellow); }
-    .watch-cover { margin:0 0 30px; overflow:hidden; border:1px solid rgba(245,245,240,.45); background:var(--black); }
-    .watch-cover img { display:block; width:100%; height:min(42vw, 420px); object-fit:cover; filter:saturate(.82) contrast(1.08); }
-    .watch-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); gap:40px; align-items:stretch; }
-    .watch-title { font:clamp(48px,7vw,88px)/.85 var(--display); letter-spacing:-.08em; text-transform:uppercase; margin:0 0 24px; }
-    .watch-copy p { font-size:16px; line-height:1.55; max-width:530px; }
-    .watch-facts { display:flex; gap:20px; flex-wrap:wrap; margin-top:28px; }
-    .watch-facts div { border-top:2px solid var(--yellow); padding-top:9px; min-width:110px; }
-    .watch-facts strong { display:block; color:var(--yellow); font:23px var(--display); }
-    .watch-facts span { font:10px var(--mono); text-transform:uppercase; }
-    .ticket-stack { display:grid; align-content:start; gap:10px; }
-    .ticket { background:var(--black); padding:20px 22px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px 18px; align-items:center; border:1px solid rgba(245,245,240,.45); }
-    .ticket h3 { margin:0; font:22px var(--display); letter-spacing:-.04em; text-transform:uppercase; }
-    .ticket p { color:var(--muted); margin:0; grid-column:1; font-size:12px; line-height:1.45; max-width:330px; }
-    .ticket strong { grid-column:2; grid-row:1 / span 2; color:var(--yellow); font:clamp(23px,3vw,30px) var(--display); white-space:nowrap; }
-    .legal { margin-top:22px; max-width:650px; font:10px/1.6 var(--mono); }
     .ambient { background:var(--black); }
     .space-grid { display:grid; grid-template-columns:1.2fr .8fr; grid-template-rows:320px; gap:10px; }
     .space-grid figure { min-width:0; margin:0; }
@@ -131,22 +113,12 @@
     .space-grid figure:hover img { transform:scale(1.04); }
     .space-grid figcaption { position:absolute; z-index:2; bottom:0; left:0; right:0; padding:28px 14px 12px; color:var(--white); font:10px var(--mono); text-transform:uppercase; background:linear-gradient(transparent,rgba(17,17,17,.85)); }
     .space-note { margin-top:15px; display:flex; justify-content:space-between; gap:20px; color:var(--muted); font:10px var(--mono); text-transform:uppercase; }
-    .benefits { background:var(--yellow); color:var(--black); border-bottom:0; }
-    .benefits .section-no { color:var(--blue); }
-    .benefits .lead { color:#25251F; }
-    .benefit-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid rgba(17,17,17,.55); border-left:1px solid rgba(17,17,17,.55); }
-    .benefit { padding:24px; min-height:155px; border-right:1px solid rgba(17,17,17,.55); border-bottom:1px solid rgba(17,17,17,.55); }
-    .benefit .num { color:var(--blue); font:12px var(--mono); }
-    .benefit h3 { font:22px/.98 var(--display); text-transform:uppercase; letter-spacing:-.05em; margin:22px 0 8px; }
-    .benefit p { font-size:13px; line-height:1.45; margin:0; max-width:280px; }
-    .commercial-note { margin-top:28px; display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:start; }
-    .commercial-note p { margin:0; line-height:1.55; max-width:540px; }
-    .approval { padding:86px 0 70px; background:var(--black); color:var(--white); border-top:8px solid var(--blue); }
-    .approval-inner { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:30px; align-items:end; }
-    .approval h2 { max-width:760px; color:var(--yellow); }
-    .approval p { max-width:600px; color:var(--muted); line-height:1.55; font-size:16px; }
-    .approval-mark { width:120px; height:120px; border:2px solid var(--yellow); color:var(--yellow); display:grid; place-items:center; font:17px var(--display); text-align:center; transform:rotate(8deg); }
-    .approval-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+    .event-cta { padding:86px 0 70px; background:var(--black); color:var(--white); border-top:8px solid var(--blue); }
+    .event-cta-inner { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:30px; align-items:end; }
+    .event-cta h2 { max-width:760px; color:var(--yellow); }
+    .event-cta p { max-width:600px; color:var(--muted); line-height:1.55; font-size:16px; }
+    .event-cta-mark { width:120px; height:120px; border:2px solid var(--yellow); color:var(--yellow); display:grid; place-items:center; font:17px var(--display); text-align:center; transform:rotate(8deg); }
+    .event-cta-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
     .button { display:inline-block; text-decoration:none; padding:14px 20px; background:var(--yellow); color:var(--black); font:11px var(--mono); text-transform:uppercase; border:1px solid var(--yellow); transition:transform .2s,background .2s; }
     .button:hover { transform:translateY(-2px); background:var(--white); border-color:var(--white); }
     .button.secondary { background:transparent; color:var(--white); border-color:var(--white); }
@@ -171,12 +143,11 @@
       .hero-copy { min-height:560px; padding:54px max(22px,calc((100vw - 700px)/2)); }
       .hero-art { min-height:500px; }
       .section-head { grid-template-columns:1fr; gap:14px; }
-      .proposal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .program-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .experience-showcase { grid-template-columns:1fr; }
-      .watch-grid { grid-template-columns:1fr; gap:28px; }
       .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:220px; }
-      .approval-inner { grid-template-columns:1fr; }
-      .approval-mark { width:90px; height:90px; }
+      .event-cta-inner { grid-template-columns:1fr; }
+      .event-cta-mark { width:90px; height:90px; }
     }
     @media (max-width:560px) {
       .wrap { width:calc(100% - 32px); }
@@ -193,18 +164,14 @@
       .section { padding:64px 0; }
       .section-head { margin-bottom:30px; }
       .lead { font-size:16px; }
-      .proposal-grid, .custom-row, .benefit-grid, .commercial-note { grid-template-columns:1fr; }
-      .proposal-card { min-height:165px; }
+      .program-grid, .custom-row { grid-template-columns:1fr; }
+      .program-card { min-height:165px; }
       .experience-showcase { grid-template-columns:1fr; }
       .custom-row .image-frame { min-height:230px; }
       .custom-copy { padding:28px 22px; }
-      .watch-title { font-size:clamp(46px,13vw,68px); }
-      .ticket { padding:16px; gap:8px 12px; }
-      .ticket h3 { font-size:18px; }
-      .ticket strong { font-size:22px; }
       .space-grid { grid-template-columns:1fr 1fr; grid-template-rows:180px; }
       .space-note { flex-direction:column; gap:7px; }
-      .approval { padding:64px 0; }
+      .event-cta { padding:64px 0; }
       .footer-inner { flex-direction:column; }
       .image-credits ul { grid-template-columns:1fr; }
     }
@@ -215,7 +182,6 @@
       .hero-meta { gap:14px; }
       .meta-block { min-width:94px; }
       .space-grid { grid-template-columns:1fr; grid-template-rows:repeat(2,180px); }
-      .ticket { grid-template-columns:minmax(0,1fr) auto; }
     }
     @media (prefers-reduced-motion:reduce) {
       html { scroll-behavior:auto; }
@@ -228,12 +194,10 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="#top" aria-label="CasaBeco, início"><img src="imgs/logo/casabeco-logo-transp.png" alt="CasaBeco"></a>
       <nav class="nav-links" aria-label="Navegação principal">
-        <a href="#conceito">A proposta</a>
+        <a href="#semana-especial">A Semana</a>
         <a href="#experiencias">Experiências</a>
         <a href="#cafe-bar">Café e bar</a>
-        <a href="#watch-party">Watch party</a>
         <a href="#ambientacao">Ambientação</a>
-        <a href="#retorno">Retorno</a>
       </nav>
       <div class="nav-actions">
         <div class="language-switch" role="group" aria-label="Seletor de idioma">
@@ -241,7 +205,7 @@
           <span aria-hidden="true">/</span>
           <a href="index-eng.html" lang="en" hreflang="en">EN</a>
         </div>
-        <span class="eyebrow">Proposta especial · 2026</span>
+        <span class="eyebrow">Semana especial · 2026</span>
       </div>
     </div>
   </header>
@@ -252,36 +216,34 @@
         <div>
           <div class="hero-kicker"><span class="stamp">CB</span><span class="eyebrow">CasaBeco apresenta · Beco do Batman</span></div>
           <h1>Semana <span class="yellow">Basquiat</span></h1>
-          <p class="hero-sub">Arte, graffiti e cultura urbana. Uma semana de experiências criativas que transforma referências da arte contemporânea em programação, convivência e novas oportunidades de receita.</p>
+          <p class="hero-sub">Arte, graffiti e cultura urbana. Uma semana especial de experiências criativas, música e gastronomia na CasaBeco, no coração do Beco do Batman.</p>
           <div class="hero-meta">
             <div class="meta-block"><strong>11 DEZ</strong><span>Data principal</span></div>
             <div class="meta-block"><strong>CASABECO</strong><span>Vila Madalena · SP</span></div>
             <div class="meta-block"><strong>1 SEMANA</strong><span>Programação especial</span></div>
           </div>
         </div>
-        <div class="eyebrow">Proposta para avaliação e aprovação da gestão <span class="asterisk">*</span></div>
+        <div class="eyebrow">Uma semana de arte, criação e encontros na CasaBeco</div>
       </div>
       <div class="hero-art image-frame" data-fallback=" ">
-        <img src="imgs\allan\basquiat-allan.png" alt="Graffiti em homenagem a Jean-Michel Basquiat no Mauerpark, Berlim" fetchpriority="high" decoding="async">
-        <!-- <div class="scribble">A R T !</div> -->
-        <!--<span class="crown-mark" aria-hidden="true">♛</span> -->
+        <img src="imgs\allan\basquiat-allan.png" alt="Obra de Allan Rodrigo inspirada em Basquiat no Beco do Batman" fetchpriority="high" decoding="async">
         <div class="hero-note"><strong>Make art.<br>Make noise.</strong><span>Uma celebração da expressão urbana</span></div>
       </div>
     </section>
 
-    <section class="section" id="conceito">
+    <section class="section" id="semana-especial">
       <div class="wrap">
         <div class="section-head">
-          <span class="section-no">01 / A PROPOSTA</span>
+          <span class="section-no">01 / SEMANA ESPECIAL</span>
           <div>
             <h2>Uma semana para viver a arte.</h2>
-            <p class="lead">Inspirada na energia visual e na atitude experimental de Jean-Michel Basquiat, a proposta conecta graffiti, pintura, moda, música e gastronomia em uma programação especial na CasaBeco, no coração do Beco do Batman.</p>
+            <p class="lead">Inspirada na energia visual e na atitude experimental de Jean-Michel Basquiat, a Semana Basquiat reúne graffiti, pintura, moda, música e gastronomia em uma programação especial na CasaBeco, no coração do Beco do Batman.</p>
           </div>
         </div>
-        <div class="proposal-grid">
-          <article class="proposal-card"><b>Experimentar</b><p>Oficinas e atividades práticas para diferentes públicos, com formatos rápidos e experiências guiadas.</p></article>
-          <article class="proposal-card"><b>Conectar</b><p>Arte, cultura urbana, música e convivência em um ambiente aberto à participação.</p></article>
-          <article class="proposal-card"><b>Ativar</b><p>Mais motivos para visitar, permanecer, consumir e compartilhar a experiência CasaBeco.</p></article>
+        <div class="program-grid">
+          <article class="program-card"><b>Experimentar</b><p>Oficinas e atividades práticas para diferentes públicos, com formatos rápidos e experiências guiadas.</p></article>
+          <article class="program-card"><b>Conectar</b><p>Arte, cultura urbana, música e convivência em um ambiente aberto à participação.</p></article>
+          <article class="program-card"><b>Viver</b><p>Um convite para conhecer a CasaBeco, participar da programação e compartilhar a experiência.</p></article>
         </div>
       </div>
     </section>
@@ -292,7 +254,7 @@
           <span class="section-no">02 / EXPERIÊNCIAS E PRODUTOS</span>
           <div>
             <h2>Da rua para a criação.</h2>
-            <p class="lead">Atividades com participação do público e valores individuais sugeridos. Cada experiência pode funcionar como produto independente durante a semana.</p>
+            <p class="lead">Participe de oficinas e atividades criativas com acompanhamento de artistas. Confira as experiências e os valores abaixo.</p>
           </div>
         </div>
         <div class="experience-list">
@@ -312,7 +274,7 @@
               <span class="eyebrow">Experiência 01</span>
               <h3>Graffiti à la Basquiat</h3>
               <p>Uma oficina prática inspirada na linguagem urbana de Basquiat: tags, lettering, coroas, dinossauros, palavras cruzadas e símbolos reconhecíveis. Cada participante aprende a combinar referências, composição e repetição para construir uma identidade visual própria.</p>
-              <p>A atividade acontece com orientação de artista e pode ser realizada sobre muro, tela ou painel, conforme o formato aprovado pela CasaBeco. Os materiais, o suporte e o espaço são preparados previamente para garantir uma experiência segura, criativa e fotografável.</p>
+              <p>A oficina é conduzida por um artista e pode acontecer em muro, tela ou painel. Os materiais e o espaço são preparados para uma experiência segura, criativa e cheia de possibilidades.</p>
               <div class="experience-values">
                 <div class="price"><span>Tag</span><strong>R$ 150</strong></div>
                 <div class="price"><span>Bomb</span><strong>R$ 250</strong></div>
@@ -336,12 +298,12 @@
               <span class="eyebrow">Experiência 02</span>
               <h3>Experiências artísticas</h3>
               <p>Atividades acessíveis para experimentar desenho, stencil e pintura em diferentes suportes. O participante recebe orientação, materiais e um processo criativo pensado para iniciantes e pessoas com alguma experiência artística.</p>
-              <p>As opções variam entre uma atividade rápida de desenho, a criação de stencil em tela ou ecobag e propostas mais completas de pintura em tecido ou tela. Os formatos permitem atendimento individual, criação coletiva e registro do processo para publicação nas redes da CasaBeco.</p>
+              <p>Escolha entre desenho, stencil em tela ou ecobag e atividades de pintura em tecido ou tela. Há opções para criar individualmente ou em grupo, sempre com orientação e materiais para participar.</p>
               <div class="experience-values">
-                <div class="price"><span>Desenhe como Basquiat</span><strong>R$ 60</strong></div>
-                <div class="price"><span>Stencil em tela ou ecobag</span><strong>R$ 150</strong></div>
-                <div class="price"><span>Pintura em tecido</span><strong>R$ 120</strong></div>
-                <div class="price"><span>Pintura em tela</span><strong>R$ 250</strong></div>
+                <div class="price"><span>Desenhe como Basquiat</span><strong>R$ 75 <small>/ USD 15</small></strong></div>
+                <div class="price"><span>Stencil em tela ou ecobag</span><strong>R$ 150 <small>/ USD 30</small></strong></div>
+                <div class="price"><span>Pintura em tecido</span><strong>R$ 150 <small>/ USD 30</small></strong></div>
+                <div class="price"><span>Pintura em tela</span><strong>R$ 250 <small>/ USD 50</small></strong></div>
               </div>
             </div>
           </article>
@@ -362,10 +324,9 @@
               <span class="eyebrow">Experiência 03</span>
               <h3>Customização de roupas</h3>
               <p>Uma experiência de moda e expressão pessoal baseada em DTF, stencil, Free Art, lettering e pintura manual. O participante pode transformar uma peça em uma criação exclusiva, inspirada na energia gráfica e na atitude experimental de Basquiat.</p>
-              <p>A customização aceita peças trazidas pelo próprio público ou produtos definidos pela CasaBeco. O formato pode incluir escolha de desenho, aplicação de stencil, pintura, acabamentos e orientação artística, com regras de produção e tempo de atendimento validadas antes da abertura das reservas.</p>
+              <p>Traga uma peça sua para personalizar ou escolha um dos produtos disponíveis na CasaBeco. A experiência pode incluir escolha da arte, aplicação de stencil, pintura e acabamentos, com orientação artística. Consulte a equipe sobre formatos e disponibilidade.</p>
               <div class="experience-values">
-                <div class="price"><span>Formato</span><strong>A definir</strong></div>
-                <div class="price"><span>Peça do participante</span><strong>Pode trazer</strong></div>
+                <div class="price"><span>Peça para customizar</span><strong>Você pode trazer</strong></div>
               </div>
             </div>
           </article>
@@ -402,49 +363,7 @@
           <div class="custom-copy">
             <span class="eyebrow">Café + bar · Edição especial</span>
             <h3>Um cardápio com identidade.</h3>
-            <p>Espresso, cappuccino, latte, sodas artesanais, drinks autorais e bebidas alcoólicas. Apresentação especial inspirada nas cores e na linguagem gráfica do evento, incentivando o consumo durante as atividades.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section watch" id="watch-party">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-no">04 / EVENTO PRINCIPAL · 11.12</span>
-          <div><h2>Watch party Basquiat.</h2></div>
-        </div>
-        <figure class="watch-cover">
-          <img src="imgs\self\basq-dance.webp" alt="Capa do evento Coffee Party Basquiat" loading="eager" decoding="async">
-        </figure>
-        <div class="watch-grid">
-          <div class="watch-copy">
-            <h3 class="watch-title">Uma noite de arte, filme e conversa.</h3>
-            <p>Encontro especial na CasaBeco com recepção, sessão coletiva do documentário, conversa e experiências artísticas. Uma oportunidade de concentrar público e ativar o café e o bar em uma noite temática.</p>
-            <div class="watch-facts">
-              <div><strong>19h–22h</strong><span>Horário sugerido</span></div>
-              <div><strong>1h35</strong><span>Duração informada</span></div>
-              <div><strong>11/12</strong><span>Data proposta</span></div>
-            </div>
-            <p class="legal">A realização da exibição pública depende de confirmação do título, disponibilidade e obtenção das autorizações/licenças necessárias. Não há parceria oficial presumida com a Netflix ou com os detentores dos direitos.</p>
-          </div>
-          <div class="ticket-stack">
-            <article class="ticket">
-              <h3>Watch Party</h3>
-              <p>Ingresso com consumação mínima no café.</p>
-              <strong>R$ 30</strong>
-            </article>
-            <article class="ticket">
-              <h3>Basquiat Drinks</h3>
-              <p>Crédito de R$ 40 para drinks selecionados.</p>
-              <strong>R$ 40</strong>
-            </article>
-            <article class="ticket">
-              <h3>Basquiat Art Pass</h3>
-              <p>Crédito de R$ 150 para experiências artísticas: muro, tela ou customização, conforme disponibilidade e regras a definir.</p>
-              <strong>R$ 150</strong>
-            </article>
-            <span class="eyebrow">Pacotes e condições sujeitos à validação da gestão.</span>
+            <p>Desfrute de espresso, cappuccino, latte, sodas artesanais, drinks autorais e outras bebidas em uma edição especial inspirada nas cores e na linguagem gráfica da Semana Basquiat.</p>
           </div>
         </div>
       </div>
@@ -453,10 +372,10 @@
     <section class="section ambient" id="ambientacao">
       <div class="wrap">
         <div class="section-head">
-          <span class="section-no">05 / AMBIENTAÇÃO E IDENTIDADE</span>
+          <span class="section-no">04 / AMBIENTAÇÃO E IDENTIDADE</span>
           <div>
             <h2>Uma ocupação visual marcante.</h2>
-            <p class="lead">Uma identidade de alto contraste, com cores vibrantes, tipografia expressiva, palavras, coroas, anatomia, símbolos e referências à cultura urbana. A proposta é criar uma atmosfera coerente sem perder a personalidade da CasaBeco.</p>
+            <p class="lead">A ambientação da Semana Basquiat combina cores vibrantes, tipografia expressiva, palavras, coroas, anatomia e símbolos da cultura urbana, sem perder a personalidade da CasaBeco.</p>
           </div>
         </div>
         <div class="space-grid">
@@ -467,42 +386,18 @@
       </div>
     </section>
 
-    <section class="section benefits" id="retorno">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="section-no">06 / VALOR PARA A CASABECO</span>
-          <div>
-            <h2>Ativação cultural com potencial comercial.</h2>
-            <p class="lead">A programação combina experiências pagas, consumo e conteúdo, criando diferentes pontos de contato com o público ao longo da semana.</p>
-          </div>
-        </div>
-        <div class="benefit-grid">
-          <article class="benefit"><span class="num">01</span><h3>Fluxo de visitantes</h3><p>Um tema reconhecível e uma programação especial como motivo adicional para visitar o espaço.</p></article>
-          <article class="benefit"><span class="num">02</span><h3>Receita com experiências</h3><p>Oficinas, atividades criativas e customização como produtos comercializáveis.</p></article>
-          <article class="benefit"><span class="num">03</span><h3>Consumo no café e bar</h3><p>Cardápio temático e formatos de participação que estimulam o consumo.</p></article>
-          <article class="benefit"><span class="num">04</span><h3>Maior permanência</h3><p>Atividades e programação cultural que convidam o público a ficar mais tempo.</p></article>
-          <article class="benefit"><span class="num">05</span><h3>Conteúdo e divulgação</h3><p>Registros de oficinas, pintura ao vivo e encontros para redes sociais e divulgação orgânica.</p></article>
-          <article class="benefit"><span class="num">06</span><h3>Posicionamento cultural</h3><p>Reforço da CasaBeco como espaço de arte, experimentação e experiências no Beco do Batman.</p></article>
-        </div>
-        <div class="commercial-note">
-          <p><strong>Modelo de operação:</strong> combinar atividades de entrada acessível com experiências de maior valor, além de ativar o café e o bar durante toda a programação.</p>
-          <p><strong>Próxima etapa:</strong> validar agenda, equipe, materiais, capacidade de atendimento, custos, preços finais e condições de realização antes da divulgação pública.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="approval" id="encerramento">
-      <div class="wrap approval-inner">
+    <section class="event-cta" id="encerramento">
+      <div class="wrap event-cta-inner">
         <div>
-          <span class="eyebrow">07 / Encerramento · CasaBeco · Proposta para aprovação</span>
-          <h2>Vamos transformar a semana em uma experiência?</h2>
-          <p>A Semana Basquiat propõe uma programação integrada de arte, cultura urbana e consumo, com formatos flexíveis e potencial para fortalecer a presença da CasaBeco como ponto de encontro criativo no Beco do Batman.</p>
-          <div class="approval-actions">
-            <a class="button" href="mailto:?subject=Semana%20Basquiat%20%7C%20Aprova%C3%A7%C3%A3o%20da%20proposta&body=Vamos%20conversar%20sobre%20a%20proposta%20da%20Semana%20Basquiat%3F">Encaminhar para aprovação</a>
-            <a class="button secondary" href="#top">Voltar ao início ↑</a>
+          <span class="eyebrow">CasaBeco · Beco do Batman · São Paulo</span>
+          <h2>Viva a Semana Basquiat.</h2>
+          <p>Siga a CasaBeco no Instagram para acompanhar a programação, as novidades e os próximos eventos. Esperamos você para uma semana de arte, criatividade e cultura urbana no Beco do Batman.</p>
+          <div class="event-cta-actions">
+            <a class="button" href="https://www.instagram.com/casbeco99/" target="_blank" rel="noopener noreferrer">Siga @casbeco99 no Instagram ↗</a>
+            <a class="button secondary" href="#experiencias">Conheça as experiências</a>
           </div>
         </div>
-        <div class="approval-mark">ARTE<br>NA RUA</div>
+        <div class="event-cta-mark">ARTE<br>NO BECO</div>
       </div>
     </section>
   </main>
@@ -510,7 +405,7 @@
   <footer>
     <div class="wrap footer-inner">
       <span>CasaBeco · Beco do Batman · Vila Madalena, São Paulo</span>
-      <span>Semana Basquiat · Proposta conceitual · 2026</span>
+      <span>Semana Basquiat · Programação especial · 2026</span>
     </div>
     <div class="wrap image-credits">
       <h2>Créditos e licenças das imagens</h2>
